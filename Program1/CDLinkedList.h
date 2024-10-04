@@ -1,20 +1,19 @@
 #ifndef CDLINKEDLIST_H_
 #define CDLINKEDLIST_H_
 #include <iostream>
-#include <cmath>
 using namespace std
 
 
 // A node that will have two pointers, prev, and next
-
-struct DListNode { // a list node
+struct DListNode
+{
   int item;
   DListNode *prev;
   DListNode *next;
 };
 
-class CDLinkedList {
-
+class CDLinkedList 
+{
 public:
   CDLinkedList(); // the constructor
   CDLinkedList(const CDLinkedList &rhs);
@@ -38,6 +37,5 @@ public:
 
 protected:
   DListNode *header;                             // a dummy header
-
   int traverseCount = 0;
 };
