@@ -87,7 +87,6 @@ bool CDLinkedList::remove(int anEntry)
     else
     {
         DListNode *curr = dummy_header->next; 
-        resetTraverseCount();
 
         //traverse list to find anEntry, while updating traverse count
         while (curr != dummy_header)
@@ -160,7 +159,6 @@ int CDLinkedList::retrieve(const int index)
     }
     else
     {
-        resetTraverseCount();
         DListNode *curr = dummy_header->next;
         int curr_index = 0;
 
