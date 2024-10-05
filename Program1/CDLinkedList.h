@@ -34,9 +34,10 @@ public:
   int getTraverseCount() const;        // return traverseCount
   int retrieve( const int index ); // retrieve the data by index. The first item is at index 0. 
 
-  void resetTraverseCount() { traverseCount = 0; }
+  void resetTraverseCount();
 
 protected:
   DListNode *dummy_header; // a dummy header
   int traverseCount = 0;
 };
+#endif

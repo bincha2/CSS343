@@ -17,6 +17,7 @@ CDLinkedList::CDLinkedList(const CDLinkedList &rhs)
     dummy_header = new DListNode();
     dummy_header->next = dummy_header;
     dummy_header->prev = dummy_header;
+    traverseCount = 0;
 
     //curr points to first real node in rhs
     DListNode *curr = rhs.dummy_header->next; 
@@ -106,6 +107,7 @@ bool CDLinkedList::remove(int anEntry)
             }
         }
     }
+    return false;
 }
 
 void CDLinkedList::clear()
@@ -154,6 +156,7 @@ int CDLinkedList::retrieve(const int index)
     if (index < 0 || index >= getCurrentSize())
     {
         cerr << "Invalid Index" << endl;
+        return -1;
     }
     else
     {
@@ -176,3 +179,4 @@ void CDLinkedList::resetTraverseCount()
 {
     traverseCount = 0;
 }
+

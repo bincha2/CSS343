@@ -4,7 +4,7 @@
 #define TRANSPOSELIST_H_
 #include "CDLinkedList.h"
 
-class TransposeList
+class TransposeList : public CDLinkedList
 {
 public:
     virtual bool contains(int anEntry) override;

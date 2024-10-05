@@ -4,7 +4,7 @@
 #define MTFLIST_H_
 #include "CDLinkedList.h"
 
-class MTFList
+class MTFList : public CDLinkedList
 {
 public:
     virtual bool contains(int anEntry) override;
