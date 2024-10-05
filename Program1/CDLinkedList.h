@@ -1,10 +1,11 @@
 #ifndef CDLINKEDLIST_H_
 #define CDLINKEDLIST_H_
 #include <iostream>
+#include <cmath>
 using namespace std
 
 
-// A node that will have two pointers, prev, and next
+//node struct 
 struct DListNode
 {
   int item;
@@ -15,9 +16,9 @@ struct DListNode
 class CDLinkedList 
 {
 public:
-  CDLinkedList(); // the constructor
+  CDLinkedList();
   CDLinkedList(const CDLinkedList &rhs);
-  ~CDLinkedList(); // the destructor
+  ~CDLinkedList();
 
   int getCurrentSize() const;
   bool isEmpty() const;
@@ -36,6 +37,6 @@ public:
   void resetTraverseCount() { traverseCount = 0; }
 
 protected:
-  DListNode *header;                             // a dummy header
+  DListNode *dummy_header;                             // a dummy header
   int traverseCount = 0;
 };
