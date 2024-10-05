@@ -1,6 +1,5 @@
 #include "CDLinkedList.h"
 
-
 //default constructor
 CDLinkedList::CDLinkedList() 
 {
@@ -19,7 +18,8 @@ CDLinkedList::CDLinkedList(const CDLinkedList &rhs)
     dummy_header->next = dummy_header;
     dummy_header->prev = dummy_header;
 
-    DListNode *curr = rhs.dummy_header->next; //curr points to first real node in rhs
+    //curr points to first real node in rhs
+    DListNode *curr = rhs.dummy_header->next; 
 
     while (curr != rhs.dummy_header) 
     {
@@ -157,12 +157,13 @@ int CDLinkedList::retrieve(const int index)
     }
     else
     {
+        resetTraverseCount();
         DListNode *curr = dummy_header->next;
         curr_index = 0;
 
         while (curr_index < index)
         {
-            traverseCount++
+            traverseCount++;
             curr_index++;
             curr = curr->next;
         }

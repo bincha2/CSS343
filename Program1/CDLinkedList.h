@@ -1,9 +1,10 @@
+// Program 1 - MTF & Transpose List - CSS343A Wooyoung Kim - CDLinkedList class by David H. Kim
+
 #ifndef CDLINKEDLIST_H_
 #define CDLINKEDLIST_H_
 #include <iostream>
 #include <cmath>
 using namespace std
-
 
 //node struct 
 struct DListNode
@@ -23,12 +24,11 @@ public:
   int getCurrentSize() const;
   bool isEmpty() const;
 
-  
   bool add(int newEntry);
   bool remove(int anEntry);
   void clear();
 
-  // This will search the entry from the list. make sure to use virtual so that transposelist can override
+  // This will search the entry from the list. Virtual so MTF & Transpose list overrides
   virtual bool contains(int anEntry);
 
   int getTraverseCount() const;        // return traverseCount
@@ -37,6 +37,6 @@ public:
   void resetTraverseCount() { traverseCount = 0; }
 
 protected:
-  DListNode *dummy_header;                             // a dummy header
+  DListNode *dummy_header; // a dummy header
   int traverseCount = 0;
 };
