@@ -123,7 +123,7 @@ void CDLinkedList::clear()
     dummy_header->prev = dummy_header;
 }
 
-virtual bool CDLinkedList::contains(int anEntry)
+bool CDLinkedList::contains(int anEntry)
 {
     DListNode *curr = dummy_header->next;
 
@@ -159,7 +159,7 @@ int CDLinkedList::retrieve(const int index)
     {
         resetTraverseCount();
         DListNode *curr = dummy_header->next;
-        curr_index = 0;
+        int curr_index = 0;
 
         while (curr_index < index)
         {

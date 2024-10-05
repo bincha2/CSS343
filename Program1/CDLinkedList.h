@@ -4,7 +4,7 @@
 #define CDLINKEDLIST_H_
 #include <iostream>
 #include <cmath>
-using namespace std
+using namespace std;
 
 //node struct 
 struct DListNode
