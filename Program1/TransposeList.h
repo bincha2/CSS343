@@ -8,6 +8,5 @@ class TransposeList : public CDLinkedList
 {
 public:
     virtual bool contains(int anEntry) override;
-
 };
 #endif

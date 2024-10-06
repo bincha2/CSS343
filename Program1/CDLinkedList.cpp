@@ -7,7 +7,6 @@ CDLinkedList::CDLinkedList()
     dummy_header = new DListNode();
     dummy_header->next = dummy_header;
     dummy_header->prev = dummy_header;
-    traverseCount = 0;
 }
 
 //copy constructor
@@ -17,15 +16,14 @@ CDLinkedList::CDLinkedList(const CDLinkedList &rhs)
     dummy_header = new DListNode();
     dummy_header->next = dummy_header;
     dummy_header->prev = dummy_header;
-    traverseCount = 0;
 
-    //curr points to first real node in rhs
-    DListNode *curr = rhs.dummy_header->next; 
+    //curr points to last real node in rhs, since Add inserts new to front, we want to reverse in copy cc to have same list
+    DListNode *curr = rhs.dummy_header->prev; 
 
     while (curr != rhs.dummy_header) 
     {
         add(curr->item);
-        curr = curr->next;
+        curr = curr->prev;
     }
 }
 
@@ -55,7 +53,6 @@ bool CDLinkedList::isEmpty() const
 
 bool CDLinkedList::add(int newEntry)
 {
-    //use contains method to check if item already exists in the list
     if (contains(newEntry))
     {
         return false;
@@ -65,12 +62,9 @@ bool CDLinkedList::add(int newEntry)
         DListNode *insert_node = new DListNode();
         insert_node->item = newEntry;
 
-        DListNode *first_node = dummy_header->next; //first node in list
-
-        //set insert node at front
-        insert_node->next = first_node; 
+        insert_node->next = dummy_header->next;
         insert_node->prev = dummy_header;
-        first_node->prev = insert_node;
+        dummy_header->next->prev = insert_node;
         dummy_header->next = insert_node;
 
         return true;
@@ -79,31 +73,21 @@ bool CDLinkedList::add(int newEntry)
 
 bool CDLinkedList::remove(int anEntry)
 {
-    //use contains method to check if item exists in list
-    if (!contains(anEntry))
-    {
-        return false;
-    }
-    else
-    {
-        DListNode *curr = dummy_header->next; 
+    DListNode *curr = dummy_header->next; 
 
-        //traverse list to find anEntry, while updating traverse count
-        while (curr != dummy_header)
+    while (curr != dummy_header)
+    {
+        traverseCount++;
+        if (curr->item == anEntry)
         {
-            traverseCount++;
-            if (curr->item == anEntry)
-            {
-                //properly relink pointers, a<->b<->c ==> a<->c and deallocate memory
-                curr->prev->next = curr->next;
-                curr->next->prev = curr->prev;
-                delete curr;
-                return true;
-            }
-            else
-            {
-                curr = curr->next;
-            }
+            curr->prev->next = curr->next;
+            curr->next->prev = curr->prev;
+            delete curr;
+            return true;
+        }
+        else
+        {
+        curr = curr->next;
         }
     }
     return false;
@@ -151,7 +135,6 @@ int CDLinkedList::getTraverseCount() const
 
 int CDLinkedList::retrieve(const int index)
 {
-    //check if valid index
     if (index < 0 || index >= getCurrentSize())
     {
         cerr << "Invalid Index" << endl;
@@ -168,11 +151,10 @@ int CDLinkedList::retrieve(const int index)
             curr_index++;
             curr = curr->next;
         }
-        
+        traverseCount++;
         return curr->item;
     }
 }
-
 void CDLinkedList::resetTraverseCount()
 {
     traverseCount = 0;

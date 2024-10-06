@@ -6,7 +6,7 @@ bool TransposeList::contains(int anEntry)
 
     while (curr != dummy_header) 
     {
-        traverseCount++; // Increment traverse count
+        traverseCount++;
         
         if (curr->item == anEntry) 
         {

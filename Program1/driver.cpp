@@ -5,6 +5,8 @@
 #include <string>
 using namespace std;
 
+
+
 //testing CDLinked List functions
 void testDefConstructor()
 {
@@ -37,7 +39,7 @@ void testCopyConstructor()
     {
         cout << list2.retrieve(i) << " ";
     }
-    cout << endl;
+    cout << endl << endl;
 
 }
 
@@ -72,7 +74,7 @@ void testAdd(CDLinkedList &list)
     {
         cout << list.retrieve(i) << " ";
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 void testRemove(CDLinkedList &list)
@@ -89,7 +91,7 @@ void testRemove(CDLinkedList &list)
     {
         cout << list.retrieve(i) << " ";
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 void testClear(CDLinkedList &list)
@@ -137,50 +139,35 @@ void testResetTraverseCount(CDLinkedList &list)
 
 
 int main() {
-    // Uncomment to test MtfList or CDLinkedList
-    // MtfList testList;   // Uncomment to test MtfList
+
+    cout << "Testing all functions in CDLinkedList.cpp to ensure they are working" << endl;
+    cout << "Output may not correctly align with the correct answers when testing with MTF & Transpose, 
+    These testing methods are purely to ensure that all functions in base CDLinkedList class work as it should." << endl;
+
+    testDefConstructor();
+    testCopyConstructor();
+
+    CDLinkedList list;
+    //MtfList list;
+    //TransposeList list;
+
+    testAdd(list);
+    testGetCurrentSize(list);
+    testIsEmpty(list);
+    testRemove(list);
+    testContains(list);
+    testRetrieve(list);
+    testGetTraverseCount(list);
+    testResetTraverseCount(list);
+    testClear(list);
+
+    // Reset all traverse counts first
+    //MtfList testList;   // Uncomment to test MtfList
     //TransposeList testList; // Uncomment to test transposelist
     CDLinkedList testList; // Uncomment to test CDLinkedList
 
-    // Test default constructor
-    testDefConstructor();
+    cout << "Now Testing given driver file code " << endl;
 
-    // Test copy constructor
-    testCopyConstructor();
-
-    // Create a CDLinkedList for further testing
-    CDLinkedList list;
-
-    // Test add method
-    testAdd(list);
-
-    // Test getCurrentSize method
-    testGetCurrentSize(list);
-
-    // Test isEmpty method
-    testIsEmpty(list);
-
-    // Test remove method
-    testRemove(list);
-
-    // Test contains method
-    testContains(list);
-
-    // Test retrieve method
-    testRetrieve(list);
-
-    // Test getTraverseCount method
-    testGetTraverseCount(list);
-
-    // Test resetTraverseCount method
-    testResetTraverseCount(list);
-
-    // Test clear method
-    testClear(list);
-
-
-
-    // Reset all traverse counts first
     testList.resetTraverseCount();
     cout << "Make a list" << endl;
 
