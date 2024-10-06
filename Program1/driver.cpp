@@ -141,8 +141,7 @@ void testResetTraverseCount(CDLinkedList &list)
 int main() {
 
     cout << "Testing all functions in CDLinkedList.cpp to ensure they are working" << endl;
-    cout << "Output may not correctly align with the correct answers when testing with MTF & Transpose, 
-    These testing methods are purely to ensure that all functions in base CDLinkedList class work as it should." << endl;
+    cout << "Output may not correctly align with the correct answers when testing with MTF & Transpose" << endl;
 
     testDefConstructor();
     testCopyConstructor();

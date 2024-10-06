@@ -9,17 +9,17 @@
 
 // Replace the following include with alternative linked list class. Currently
 // it tests CDLinkedList
-//#include "CDLinkedList.h"
+#include "CDLinkedList.h"
 //#include "TransposeList.h"
-#include "MtfList.h"
+//#include "MtfList.h"
 
 using namespace std;
 
 int main() {
     // Alter the following declaration to change the linked list class name.
-    // CDLinkedList theList;
-    // TransposeList theList;
-    MtfList theList;
+     CDLinkedList theList;
+    //TransposeList theList;
+    //MtfList theList;
 
     const int numValues = 1000;
     const int numAccesses = 100000;
