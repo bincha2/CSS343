@@ -1,0 +1,215 @@
+Reading nodes from a file
+------------------------------
+Sideway print: 
+               42
+          40
+     37
+          25
+               21
+18
+                    15
+               13
+          11
+               8
+     3
+          1
+Display tree: 
+Root: 18
+    L---3
+        L---1
+        R---11
+            L---8
+            R---13
+                R---15
+    R---37
+        L---25
+            L---21
+        R---40
+            R---42
+Inorder: 1 3 8 11 13 15 18 21 25 37 40 42 
+Test retrieve and getHeight
+Retrieve 18: found
+Node address = 0x21c20c0
+Height of node 18 is 5
+Copy Tree: 1 3 8 11 13 15 18 21 25 37 40 42 
+Assign Tree: 1 3 8 11 13 15 18 21 25 37 40 42 
+Are they same?  yes 
+Are they different?  no
+BST to Array
+1 3 8 11 13 15 18 21 25 37 40 42 
+Array to BST: should balance the tree
+               42
+          40
+               37
+     25
+               21
+          18
+15
+               13
+          11
+     8
+               3
+          1
+Root: 15
+    L---8
+        L---1
+            R---3
+        R---11
+            R---13
+    R---25
+        L---18
+            R---21
+        R---40
+            L---37
+            R---42
+Compare the original tree and recovered tree
+Are they same?  no
+Are they different?  yes 
+------------------------------
+Sideway print: 
+                    z
+               y
+          tttt
+                    sssss
+               r
+                    pp
+                         ooo
+     not
+               m
+          jj
+iii
+          ff
+     eee
+          and
+Display tree: 
+Root: iii
+    L---eee
+        L---and
+        R---ff
+    R---not
+        L---jj
+            R---m
+        R---tttt
+            L---r
+                L---pp
+                    L---ooo
+                R---sssss
+            R---y
+                R---z
+Inorder: and eee ff iii jj m not ooo pp r sssss tttt y z 
+Test retrieve and getHeight
+Retrieve 18: not found
+Height of node 18 is 0
+Copy Tree: and eee ff iii jj m not ooo pp r sssss tttt y z 
+Assign Tree: and eee ff iii jj m not ooo pp r sssss tttt y z 
+Are they same?  yes 
+Are they different?  no
+BST to Array
+and eee ff iii jj m not ooo pp r sssss tttt y z 
+Array to BST: should balance the tree
+               z
+          y
+               tttt
+     sssss
+               r
+          pp
+               ooo
+not
+               m
+          jj
+               iii
+     ff
+               eee
+          and
+Root: not
+    L---ff
+        L---and
+            R---eee
+        R---jj
+            L---iii
+            R---m
+    R---sssss
+        L---pp
+            L---ooo
+            R---r
+        R---y
+            L---tttt
+            R---z
+Compare the original tree and recovered tree
+Are they same?  no
+Are they different?  yes 
+------------------------------
+Sideway print: 
+     c
+b
+     a
+Display tree: 
+Root: b
+    L---a
+    R---c
+Inorder: a b c 
+Test retrieve and getHeight
+Retrieve 18: not found
+Height of node 18 is 0
+Copy Tree: a b c 
+Assign Tree: a b c 
+Are they same?  yes 
+Are they different?  no
+BST to Array
+a b c 
+Array to BST: should balance the tree
+     c
+b
+     a
+Root: b
+    L---a
+    R---c
+Compare the original tree and recovered tree
+Are they same?  yes 
+Are they different?  no
+------------------------------
+Sideway print: 
+c
+     b
+          a
+Display tree: 
+Root: c
+    L---b
+        L---a
+Inorder: a b c 
+Test retrieve and getHeight
+Retrieve 18: not found
+Height of node 18 is 0
+Copy Tree: a b c 
+Assign Tree: a b c 
+Are they same?  yes 
+Are they different?  no
+BST to Array
+a b c 
+Array to BST: should balance the tree
+     c
+b
+     a
+Root: b
+    L---a
+    R---c
+Compare the original tree and recovered tree
+Are they same?  no
+Are they different?  yes 
+------------------------------
+Sideway print: 
+Display tree: 
+Inorder: 
+Test retrieve and getHeight
+Retrieve 18: not found
+Height of node 18 is 0
+Copy Tree: 
+Assign Tree: 
+Are they same?  yes 
+Are they different?  no
+BST to Array
+
+Array to BST: should balance the tree
+Compare the original tree and recovered tree
+Are they same?  yes 
+Are they different?  no

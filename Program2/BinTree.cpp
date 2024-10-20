@@ -1,3 +1,5 @@
+// Program 2 Binary Search Tree - CSS343A Wooyoung Kim - BinTree class by David H. Kim
+
 #include "BinTree.h"
 
 BinTree::BinTree()
@@ -157,7 +159,7 @@ int BinTree::recursiveGetHeight(Node *curr, const string &string) const
         return rightHeight;
     }
 
-    return 0;
+    return 0; // not found
 }
 
 int BinTree::getHeightHelper(Node *curr) const
@@ -208,12 +210,16 @@ void BinTree::recursiveInorder(Node *curr, ostream &out) const
 
 void BinTree::recursiveDisplayTree(Node *curr, string indent) const
 {
-    if (indent == "")
+    if (curr == nullptr)
+    {
+        return;
+    }
+    if (indent == "") // if its the first node
     {
         cout << "Root: " << curr->data << endl;
         recursiveDisplayTree(curr, "    ");
     }
-    else
+    else // add indents for the levels of the tree
     {
         if (curr->left != nullptr)
         {
@@ -253,7 +259,7 @@ void BinTree::recursiveDisplaySideways(Node *curr, int space) const
 // array bstree functions
 void BinTree::bstreeToArray(string arr[ARRAYSIZE])
 {
-    int index = 1;
+    int index = 1; // index of a btree starts at 1 according to my notes from class
     recursiveBSTreeToArray(root, arr, index);
     recursiveDestroy(root); // leave the tree empty after
 }
@@ -344,6 +350,6 @@ void BinTree::recursiveDestroy(Node *curr)
     {
         recursiveDestroy(curr->left);  // destroy left subtree
         recursiveDestroy(curr->right); // destroy right subtree
-        delete curr;                   // always delete the node
+        delete curr;                   // delete node, dont need to do data bc its string so the string class deallocates it priqperly 
     }
 }

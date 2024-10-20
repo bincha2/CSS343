@@ -1,0 +1,248 @@
+Testing Default Constructor and isEmpty
+Should return 1 (true), Actual Return: 1
+--------TESTING BINTREE FUNCTIONS WITH 3 DIFFERENT TREES------
+Reading nodes from a file
+Testing insert: If correctly implemented, tree will display correctly with the values inserted
+Sideways: 
+                                             10
+                                        9
+                                   8
+                              7
+                         6
+                    5
+               4
+          3
+     2
+1
+Display:
+Root: 1
+    R---2
+        R---3
+            R---4
+                R---5
+                    R---6
+                        R---7
+                            R---8
+                                R---9
+                                    R---10
+In-order display: (output overload)
+1 2 3 4 5 6 7 8 9 10 
+Testing retrieve: 
+Retrieve: 10: not found
+Testing getHeight: 
+Height: Height of 10 should be 1 since it is leaf, in other trees 0 as it DNE
+1
+Testing Copy Constructor
+Copy Constructor: 1 2 3 4 5 6 7 8 9 10 
+Testing assignment overload
+Assignment overload: 1 2 3 4 5 6 7 8 9 10 
+Testing compare == and != overload
+Are they same?  yes 
+Are they different?  no
+Testing BSTreeToArray
+1 2 3 4 5 6 7 8 9 10 
+Testing ArrayToBSTree. The Tree should be a balanced tree
+               10
+          9
+     8
+               7
+          6
+5
+               4
+          3
+     2
+          1
+Root: 5
+    L---2
+        L---1
+        R---3
+            R---4
+    R---8
+        L---6
+            R---7
+        R---9
+            R---10
+Testing if the original tree before conversion, and new tree after conversion are the same
+Are they same?  no
+Are they different?  yes 
+To test destructor, run valgrind ./a.out to see if there are any memory leaks
+---------------FINISHED TESTING THE BINTREE FUNCTIONS--------------
+Testing insert: If correctly implemented, tree will display correctly with the values inserted
+Sideways: 
+                                                  kk
+                                             jj
+                                        ii
+                                   hh
+                              gg
+                         ff
+                    ee
+               dd
+          cc
+     bb
+aa
+Display:
+Root: aa
+    R---bb
+        R---cc
+            R---dd
+                R---ee
+                    R---ff
+                        R---gg
+                            R---hh
+                                R---ii
+                                    R---jj
+                                        R---kk
+In-order display: (output overload)
+aa bb cc dd ee ff gg hh ii jj kk 
+Testing retrieve: 
+Retrieve: 10: not found
+Testing getHeight: 
+Height: Height of 10 should be 1 since it is leaf, in other trees 0 as it DNE
+0
+Testing Copy Constructor
+Copy Constructor: aa bb cc dd ee ff gg hh ii jj kk 
+Testing assignment overload
+Assignment overload: aa bb cc dd ee ff gg hh ii jj kk 
+Testing compare == and != overload
+Are they same?  yes 
+Are they different?  no
+Testing BSTreeToArray
+aa bb cc dd ee ff gg hh ii jj kk 
+Testing ArrayToBSTree. The Tree should be a balanced tree
+               kk
+          jj
+     ii
+               hh
+          gg
+ff
+               ee
+          dd
+     cc
+               bb
+          aa
+Root: ff
+    L---cc
+        L---aa
+            R---bb
+        R---dd
+            R---ee
+    R---ii
+        L---gg
+            R---hh
+        R---jj
+            R---kk
+Testing if the original tree before conversion, and new tree after conversion are the same
+Are they same?  no
+Are they different?  yes 
+To test destructor, run valgrind ./a.out to see if there are any memory leaks
+---------------FINISHED TESTING THE BINTREE FUNCTIONS--------------
+Testing insert: If correctly implemented, tree will display correctly with the values inserted
+Sideways: 
+                                                  k
+                                             jjj
+                                        i
+                                   hhh
+                              g
+                         fff
+                    e
+               ddd
+          c
+     bbb
+a
+Display:
+Root: a
+    R---bbb
+        R---c
+            R---ddd
+                R---e
+                    R---fff
+                        R---g
+                            R---hhh
+                                R---i
+                                    R---jjj
+                                        R---k
+In-order display: (output overload)
+a bbb c ddd e fff g hhh i jjj k 
+Testing retrieve: 
+Retrieve: 10: not found
+Testing getHeight: 
+Height: Height of 10 should be 1 since it is leaf, in other trees 0 as it DNE
+0
+Testing Copy Constructor
+Copy Constructor: a bbb c ddd e fff g hhh i jjj k 
+Testing assignment overload
+Assignment overload: a bbb c ddd e fff g hhh i jjj k 
+Testing compare == and != overload
+Are they same?  yes 
+Are they different?  no
+Testing BSTreeToArray
+a bbb c ddd e fff g hhh i jjj k 
+Testing ArrayToBSTree. The Tree should be a balanced tree
+               k
+          jjj
+     i
+               hhh
+          g
+fff
+               e
+          ddd
+     c
+               bbb
+          a
+Root: fff
+    L---c
+        L---a
+            R---bbb
+        R---ddd
+            R---e
+    R---i
+        L---g
+            R---hhh
+        R---jjj
+            R---k
+Testing if the original tree before conversion, and new tree after conversion are the same
+Are they same?  no
+Are they different?  yes 
+To test destructor, run valgrind ./a.out to see if there are any memory leaks
+---------------FINISHED TESTING THE BINTREE FUNCTIONS--------------
+Testing insert: If correctly implemented, tree will display correctly with the values inserted
+Sideways: 
+     v
+          e
+d
+     a
+Display:
+Root: d
+    L---a
+    R---v
+        L---e
+In-order display: (output overload)
+a d e v 
+Testing retrieve: 
+Retrieve: 10: not found
+Testing getHeight: 
+Height: Height of 10 should be 1 since it is leaf, in other trees 0 as it DNE
+0
+Testing Copy Constructor
+Copy Constructor: a d e v 
+Testing assignment overload
+Assignment overload: a d e v 
+Testing compare == and != overload
+Are they same?  yes 
+Are they different?  no
+Testing BSTreeToArray
+a d e v 
+Testing ArrayToBSTree. The Tree should be a balanced tree
+          v
+     e
+d
+     a
+Root: d
+    L---a
+    R---e
+        R---v
+Testing if the original tree before conversion, and new tree after conversion are the same
+Are they same?  no
+Are they different?  yes 
+To test destructor, run valgrind ./a.out to see if there are any memory leaks
+---------------FINISHED TESTING THE BINTREE FUNCTIONS--------------
