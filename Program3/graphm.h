@@ -3,9 +3,13 @@
 #ifndef GRAPHM_H_
 #define GRAPHM_H_
 #include <iostream>
+#include <fstream>
+#include <cmath>
+#include "limits.h"
+#include <string>
 using namespace std;
 
-const int MAXNODES = 100;
+const int MAXNODES = 101; //max nodes cant exceed 100 in a graph, also set to 101 so i can use 1 based index following node style, and not 0 based
 
 struct TableType
 {
@@ -21,7 +25,7 @@ public:
     //functions
     GraphM(); //def constructor, data member T is initalized to set all dist to inf, sets all visted to false, & path to 0
 
-    int buildGraph(); //builds up graph node inforrmation and adj matrix of edges between each node from file. Return int, -1 if fail, 1 true
+    int buildGraph(ifstream &infile); //builds up graph node inforrmation and adj matrix of edges between each node from file. Return int, -1 if fail, 1 true
 
     int insertEdge(int from_node, int to_node, int weight); //insert an edge into graph between two given nodes. The return type is an integer. Return -1 if fail. Otherwise, return 1.
 
