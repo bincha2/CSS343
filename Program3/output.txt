@@ -111,3 +111,15 @@ Node 3                     ccc
 Display DFS
 Depth-first Ordering : 1 3 2
 No more graphs to read
+
+valgrind ./a.out
+
+==2148689==
+==2148689== HEAP SUMMARY:
+==2148689==     in use at exit: 0 bytes in 0 blocks
+==2148689==   total heap usage: 56 allocs, 56 frees, 97,734 bytes allocated
+==2148689==
+==2148689== All heap blocks were freed -- no leaks are possible
+==2148689==
+==2148689== For lists of detected and suppressed errors, rerun with: -s
+==2148689== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
