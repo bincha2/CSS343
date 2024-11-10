@@ -184,31 +184,31 @@ void GraphM::displayAll()
     cout << endl;
 }
 
-void GraphM::display(int source, int dest)
+void GraphM::display(int from_node, int to_node)
 {
-    if (T[source][dest].dist == INT_MAX) // no path
+    if (T[from_node][to_node].dist == INT_MAX) // no path
     {
-        cout << setw(5) << source << setw(5) << dest << setw(10) << "---" << endl;
+        cout << setw(5) << from_node << setw(5) << to_node << setw(10) << "---" << endl;
     }
     else
     {
-        cout << setw(5) << source << setw(5) << dest << setw(10) << T[source][dest].dist << setw(10);
-        printPath(source, dest);
-        cout << dest << endl; // Print the destination node
-        printName(source, dest);
+        cout << setw(5) << from_node << setw(5) << to_node << setw(10) << T[from_node][to_node].dist << setw(10);
+        printPath(from_node, to_node);
+        cout << to_node << endl; // Print the destination node
+        printName(from_node, to_node);
     }
 }
 
-void GraphM::printName(int from, int to)
+void GraphM::printName(int from_node, int to_node)
 {
-    if (T[from][to].path != 0) // while there is a path
+    if (T[from_node][to_node].path != 0) // while there is a path
     {
-        printName(from, T[from][to].path); // reucrisvly call
-        cout << data[to] << endl;          // output each name in path
+        printName(from_node, T[from_node][to_node].path); // reucrisvly call
+        cout << data[to_node] << endl;          // output each name in path
     }
     else
     {
-        cout << data[from] << endl; // print from node (source)
+        cout << data[from_node] << endl; // print from node (source)
     }
 }
 
