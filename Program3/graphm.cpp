@@ -1,99 +1,222 @@
 #include "graphm.h"
 
-GraphM::GraphM() // default constructor
+// default constructor
+GraphM::GraphM()
 {
-    size = 0;
+    size = 0; // initalize size to 0
 
-    // intialize the detail array to empty
-    for (int i = 1; i < MAXNODES; i++)
+    // initalize cost array to infinity
+    for (int i = 0; i < MAXNODES; ++i)
     {
-        data[i] = "";
-    }
-
-    // initalize the cost adj matrix to INF
-    for (int i = 1; i < MAXNODES; i++)
-    {
-        for (int j = 1; j < MAXNODES; j++)
+        for (int j = 0; j < MAXNODES; ++j)
         {
             C[i][j] = INT_MAX;
         }
     }
 
-    // initalize table struct to default, (visited = false, dist = INF, path = 0)
-    for (int i = 1; i < MAXNODES; i++)
+    // initalize table type T to inf, 0, and false
+    for (int i = 0; i < MAXNODES; ++i)
     {
-        for (int j = 1; j < MAXNODES; j++)
+        for (int j = 0; j < MAXNODES; ++j)
         {
-            T[i][j].visited = false;
             T[i][j].dist = INT_MAX;
             T[i][j].path = 0;
+            T[i][j].visited = false;
         }
     }
 }
 
-int GraphM::buildGraph(ifstream &infile)
+// build grapgh from file
+int GraphM::buildGraph(ifstream &file)
 {
-    // initialize edges, # of nodes, and the name of the nodes
     int from_node;
     int to_node;
-    int weight;
+    int dist;
+
+    if (!(file >> size) || size > MAXNODES) // read in size && check for errors
+    {
+        return -1;
+    }
+
     string name;
+    getline(file, name);
 
-    infile >> size; // stores N nodes into size
-    infile.ignore();
-
-    if (size < 1 || size > 100)
+    for (int i = 1; i <= size; i++) // since theres N (size) nodes, theres N names
     {
-        cerr << "Cannot have less than 1 node or more than 100 nodes per graph" << endl;
-        return -1; // failed
+        getline(file, name); // store node detail into name
+        data[i] = name;      // store node name in data array
     }
 
-    for (int i = 1; i <= size; i++)
+    while (file >> from_node >> to_node >> dist)
     {
-        getline(infile, data[i]); // since theres N nodes, theres N lines of Names, store into data array
-    }
-
-    while (infile >> from_node >> to_node >> weight)
-    {
-        if (from_node == 0) // first int = 0, end of graph
+        if (from_node == 0) // if first int is 0 then signals end of graph
         {
             break;
         }
-        else // create the cost array
+        else
         {
-            C[from_node][to_node] = weight; // store the edge ex.C[1][2] = 50
+            C[from_node][to_node] = dist; // create the edge
         }
     }
 
     return 1; // success
 }
 
-int GraphM::insertEdge(int from_node, int to_node, int weight)
+int GraphM::insertEdge(int from_node, int to_node, int dist)
 {
-    // check to see if its valid edge
-    if (from_node < 1 || from_node > size || to_node < 1 || to_node > size || from_node == to_node || weight < 0) 
+    // check if valid edge (weight is not neg for djikstras, and valid in the range of node indexs)
+    if (dist < 0 || from_node > size || to_node > size || from_node < 1 || to_node < 1)
     {
-        cerr << "invalid edge" << endl;
-        return -1; // failed
+        return -1;
     }
     else
     {
-        C[from_node][to_node] = weight; // store the edge
-        return 1;                       // success
+        C[from_node][to_node] = dist;
+        findShortestPath(); // calkl djikstras again to update the matrixs
+        return 1;
     }
 }
 
 int GraphM::removeEdge(int from_node, int to_node)
 {
-    // chek to see if its a valid edge
-    if (from_node < 1 || from_node > size || to_node < 1 || to_node > size || from_node == to_node)
+    // check if its a valid edge i.e cant be less than index of size or greater
+    if (from_node < 1 || from_node > size || to_node < 1 || to_node > size)
     {
-        cerr << "invalid edge" << endl;
-        return -1; // failed
+        return -1;
     }
     else
     {
-        C[from_node][to_node] = INT_MAX; // set edge to infinity
-        return 1;                         // success
+        C[from_node][to_node] = INT_MAX; // set the edge to infinity (empty)
+        findShortestPath();
+        return 1;
+    }
+}
+
+void GraphM::findShortestPath()
+{
+    // intialize tabletype T to inf, 0, and false
+    for (int i = 1; i <= size; ++i)
+    {
+        for (int j = 1; j <= size; ++j)
+        {
+            T[i][j].dist = INT_MAX;
+            T[i][j].path = 0;
+            T[i][j].visited = false;
+        }
+    }
+
+    // djikstras for each node (each node in the graph will be source at 1 point)
+    for (int source = 1; source <= size; ++source)
+    {
+        T[source][source].dist = 0; // source dist is 0
+
+        for (int num = 0; num < size; ++num)
+        {
+            // find v, not visited shortest distance at this point
+            int v = 0;
+            for (int i = 1; i <= size; ++i)
+            {
+                if (!T[source][i].visited && (v == 0 || T[source][i].dist < T[source][v].dist))
+                {
+                    v = i; // update v to be the next unvisited node
+                }
+            }
+
+            T[source][v].visited = true; // mark v as visited
+
+            // for each w adjacent to v , and update the path information
+            for (int w = 1; w <= size; ++w)
+            {
+                if (!T[source][w].visited && C[v][w] < INT_MAX && T[source][v].dist < INT_MAX) // check to see if its a valid edge
+                {
+                    if (T[source][w].dist > T[source][v].dist + C[v][w]) // check if v to w is shorter path than the current path rn
+                    {
+                        T[source][w].dist = T[source][v].dist + C[v][w]; // distance is updated to reflect the new path
+                        T[source][w].path = v;                           // shortest path to w goes through v now
+                    }
+                }
+            }
+        }
+    }
+}
+
+void GraphM::displayAll()
+{
+    findShortestPath(); // redo djikstras to correctly update paths
+
+    cout << left << setw(25) << "Description" << " " << left << setw(10) << "From Node" << " " 
+    << left << setw(10) << "To Node" << " " << left << setw(10) << "Distance" << " " << left << setw(10) << "Path";
+
+    // Loop through each source node
+    for (int source = 1; source <= size; ++source)
+    {
+        cout << endl;
+        cout << data[source] << endl; // Print description of the source node
+
+        // Loop through each destination node
+        for (int to_node = 1; to_node <= size; ++to_node)
+        {
+            if (to_node != source)
+            {
+                cout.width(35);
+                cout << right << source;
+                cout.width(9);
+                cout << to_node;
+                cout.width(12);
+
+                if (T[source][to_node].dist == INT_MAX)
+                {
+                    // No path found
+                    cout << "---" << endl;
+                }
+                else
+                {
+                    // Path found
+                    cout << T[source][to_node].dist;
+                    cout.width();
+                    cout << "    ";
+                    printPath(source, to_node); // call print path to output the path
+                    cout << to_node << endl;
+                }
+            }
+        }
+    }
+    cout << endl;
+}
+
+void GraphM::display(int source, int dest)
+{
+    if (T[source][dest].dist == INT_MAX) // no path
+    {
+        cout << setw(5) << source << setw(5) << dest << setw(10) << "---" << endl;
+    }
+    else
+    {
+        cout << setw(5) << source << setw(5) << dest << setw(10) << T[source][dest].dist << setw(10);
+        printPath(source, dest);
+        cout << dest << endl; // Print the destination node
+        printName(source, dest);
+    }
+}
+
+void GraphM::printName(int from, int to)
+{
+    if (T[from][to].path != 0) // while there is a path
+    {
+        printName(from, T[from][to].path); // reucrisvly call
+        cout << data[to] << endl;          // output each name in path
+    }
+    else
+    {
+        cout << data[from] << endl; // print from node (source)
+    }
+}
+
+void GraphM::printPath(int from_node, int to_node)
+{
+    if (T[from_node][to_node].path != 0) // if there is a path
+    {
+        printPath(from_node, T[from_node][to_node].path); // recursivly diospaly the path
+        cout << T[from_node][to_node].path << " ";        // print each path
     }
 }

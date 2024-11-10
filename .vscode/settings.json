@@ -5,6 +5,8 @@
         "new": "cpp",
         "ostream": "cpp",
         "fstream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iomanip": "cpp",
+        "string": "cpp"
     }
 }

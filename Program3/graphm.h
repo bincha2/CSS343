@@ -1,47 +1,45 @@
-// Program 3 - CSS343 Wooyoung Kim - David H. Kim - GraphM (Dijkstra's Algorithm)
+// Program 3 - GraphM Class (Djikstras) - CSS343 Wooyoung Kim - David H. Kim
 
 #ifndef GRAPHM_H_
 #define GRAPHM_H_
 #include <iostream>
 #include <fstream>
-#include <cmath>
-#include "limits.h"
 #include <string>
+#include <climits>
+#include <cmath>
+#include <iomanip>
+#include "graphl.h"
 using namespace std;
-
-const int MAXNODES = 101; //max nodes cant exceed 100 in a graph, also set to 101 so i can use 1 based index following node style, and not 0 based
-
-struct TableType
-{
-    bool visited; // whether the node has been visited
-    int dist;     // shortest distance from source that we know so far
-    int path;     // previous node in path of minimum distance
-};
 
 class GraphM
 {
 public:
-    
-    //functions
-    GraphM(); //def constructor, data member T is initalized to set all dist to inf, sets all visted to false, & path to 0
+    GraphM();                       // DEFAULT CONSTRUCTOR, set T , all dist to inf, visit to false, and path to 0
+    int buildGraph(ifstream &file); // Builds graph and adj matrix from file
 
-    int buildGraph(ifstream &infile); //builds up graph node inforrmation and adj matrix of edges between each node from file. Return int, -1 if fail, 1 true
+    int insertEdge(int from_node, int to_node, int dist); // insert edge into graph
+    int removeEdge(int from_node, int to_node);           // remove edge into graph
 
-    int insertEdge(int from_node, int to_node, int weight); //insert an edge into graph between two given nodes. The return type is an integer. Return -1 if fail. Otherwise, return 1.
+    void findShortestPath(); // djikstras, tabletype T is updated with path information
 
-    int removeEdge(int from_node, int to_node); //remove an edge between two given nodes. The return type is an integer. Return -1 if fail. Otherwise, return 1.
-
-    void findShortestPath(); //find the shortest path between every node to every other node in the graph, i.e., TableType T is updated with shortest path information. Return type is "void"
-
-    //display functions
-    void displayAll(); //uses "cout"s to demonstrate that the algorithm works properly. Return type is "void" 
-
-    void display(int from_node, int to_node); //uses "cout"s to display the shortest distance with path info between the fromNode to toNode. Return type is "void"
+    void displayAll();                        // display like the provided output
+    void display(int from_node, int to_node); // display a path from from_node to to_node w/ node details
 
 private:
-    string data[MAXNODES];           // Data for graph nodes, contains the names of the nodes as string
-    int C[MAXNODES][MAXNODES];       // Cost array (Adjacency Matrix)
-    int size;                        // Number of nodes in the graph
-    TableType T[MAXNODES][MAXNODES]; // Stores visited, distance, path
+    struct TableType
+    {
+        bool visited; // whether node has been visited
+        int dist;     // shortest distance from source known so far
+        int path;     // previous node in path of min dist
+    };
+
+    string data[MAXNODES];           // HOLDS THE DATA FOR EACH NODE
+    int C[MAXNODES][MAXNODES];       // COST ARRAY ADJ MATRIX
+    int size;                        // N number of nodes in each graph
+    TableType T[MAXNODES][MAXNODES]; // stores visited, distance, and prev path
+
+    //helper functions for dispalying the path and the path names recuirsivly 
+    void printPath(int from_node, int to_node);
+    void printName(int from_node, int to_node);
 };
 #endif
